@@ -108,6 +108,15 @@ Table borrowings {
   }
 }
 
+Table borrowing_items {
+  borrowing_id int [ref: > borrowings.id]
+  book_copy_id int [ref: > book_copies.id]
+
+  indexes {
+    (borrowing_id, book_copy_id) [pk]
+  }
+  
+}
 
 Table reservation_statuses {
   id   int         [pk, increment]

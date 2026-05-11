@@ -1,1 +1,134 @@
+Table books {
+  id               int          [pk, increment]
+  title            varchar(255) [not null]
+  isbn             varchar(17)  [unique, not null]
+  publication_year smallint
+
+
+  checks {
+    `publication_year BETWEEN 1000 AND 2100` [name: 'chk_pub_year']
+  }
+}
+
+
+Table authors {
+  id         int         [pk, increment]
+  first_name varchar(50) [not null]
+  last_name  varchar(50) [not null]
+}
+
+
+Table book_authors {
+  book_id   int [ref: > books.id]
+  author_id int [ref: > authors.id]
+
+
+  indexes {
+    (book_id, author_id) [pk]
+  }
+}
+
+
+Table categories {
+  id   int         [pk, increment]
+  name varchar(40) [not null, unique]
+}
+
+
+Table book_categories {
+  book_id     int [ref: > books.id]
+  category_id int [ref: > categories.id]
+
+
+  indexes {
+    (book_id, category_id) [pk]
+  }
+}
+
+
+
+
+Table members {
+  id            int          [pk, increment]
+  first_name    varchar(50)  [not null]
+  last_name     varchar(50)  [not null]
+  email         varchar(100) [not null, unique]
+  login         varchar(100) [not null, unique]
+  password_hash varchar(128) [not null]
+  phone         varchar(20)  [not null]
+  address       varchar(150) [not null]
+}
+
+
+Table copy_statuses {
+  id   int         [pk, increment]
+  name varchar(15) [not null, unique]
+}
+
+
+Table book_copies {
+  id             int         [pk, increment]
+  book_id        int         [ref: > books.id, not null]
+  barcode        varchar(30) [not null, unique]
+  copy_status_id int         [ref: > copy_statuses.id, not null]
+}
+
+
+Table borrowing_statuses {
+  id   int         [pk, increment]
+  name varchar(15) [not null, unique]
+}
+
+
+Table borrowings {
+  id             int       [pk, increment]
+  member_id      int       [ref: > members.id, not null]
+  book_copy_id   int       [ref: > book_copies.id, not null]
+  borrowing_date timestamp [not null, default: 'now()']
+  due_date       timestamp [not null]
+  return_date    timestamp
+  status_id      int       [ref: > borrowing_statuses.id, not null]
+
+
+  checks {
+    `due_date > borrowing_date`                                    [name: 'chk_due_after_borrow']
+    `return_date IS NULL OR return_date >= borrowing_date`         [name: 'chk_return_after_borrow']
+  }
+}
+
+
+Table reservation_statuses {
+  id   int         [pk, increment]
+  name varchar(15) [not null, unique]
+}
+
+
+Table reservations {
+  id               int       [pk, increment]
+  member_id        int       [ref: > members.id, not null]
+  book_id          int       [ref: > books.id, not null]
+  book_copy_id     int       [null, ref: > book_copies.id]
+  reservation_date timestamp [not null, default: 'now()']
+  status_id        int       [ref: > reservation_statuses.id, not null]
+}
+
+
+Table book_reviews {
+  id          int       [pk, increment]
+  member_id   int       [ref: > members.id, not null]
+  book_id     int       [ref: > books.id, not null]
+  review_text text
+  created_at  timestamp [not null, default: 'now()']
+  rate        smallint  [not null]
+
+
+  indexes {
+    (member_id, book_id) [unique, name: 'uq_one_review_per_book']
+  }
+
+
+  checks {
+    `rate BETWEEN 1 AND 5` [name: 'chk_rate']
+  }
+}
 

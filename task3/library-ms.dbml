@@ -4,12 +4,24 @@ Table books {
   isbn             varchar(17)  [unique, not null]
   publication_year smallint
 
-
   checks {
     `publication_year BETWEEN 1000 AND 2100` [name: 'chk_pub_year']
   }
 }
 
+Table Book_Genre {
+  Book_id  int [not null, ref: > books.id]
+  Genre_id int [not null, ref: > Genre.id]
+
+  indexes {
+    (Book_id, Genre_id) [pk]
+  }
+}
+
+Table Genre {
+  id   int          [pk, increment]
+  Name varchar(255) [not null]
+}
 
 Table authors {
   id         int         [pk, increment]

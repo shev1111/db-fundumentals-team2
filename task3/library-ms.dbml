@@ -124,6 +124,16 @@ Table reservations {
   status_id        int       [ref: > reservation_statuses.id, not null]
 }
 
+Table reservation_items {
+  reservations_id   int [ref: > reservations.id]
+  books_id int [ref: > books.id]
+  reservation_amount tinyint [not null, default: '1']
+
+    indexes {
+    (reservations_id, books_id) [pk]
+  }
+}
+
 
 Table book_reviews {
   id          int       [pk, increment]

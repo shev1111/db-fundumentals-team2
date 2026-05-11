@@ -127,7 +127,7 @@ Table reservations {
 Table reservation_items {
   reservations_id   int [ref: > reservations.id]
   books_id int [ref: > books.id]
-  reservation_amount tinyint [not null, default: '1']
+  reservation_amount int [not null, default: '1']
 
     indexes {
     (reservations_id, books_id) [pk]

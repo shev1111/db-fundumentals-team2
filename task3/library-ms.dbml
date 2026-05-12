@@ -9,7 +9,7 @@ Table books {
   }
 }
 
-Table Book_Genre {
+Table book_ganre {
   Book_id  int [not null, ref: > books.id]
   Genre_id int [not null, ref: > Genre.id]
 

@@ -94,28 +94,26 @@ Table borrowing_statuses {
 
 Table borrowings {
   id             int       [pk, increment]
-  member_id      int       [ref: > members.id, not null]
-  book_copy_id   int       [ref: > book_copies.id, not null]
+  member_id      int       [not null, ref: > members.id]
   borrowing_date timestamp [not null, default: 'now()']
   due_date       timestamp [not null]
   return_date    timestamp
-  status_id      int       [ref: > borrowing_statuses.id, not null]
-
+  status_id      int       [not null, ref: > borrowing_statuses.id]
 
   checks {
-    `due_date > borrowing_date`                                    [name: 'chk_due_after_borrow']
-    `return_date IS NULL OR return_date >= borrowing_date`         [name: 'chk_return_after_borrow']
+    `due_date > borrowing_date`                                [name: 'chk_due_after_borrow']
+    `return_date IS NULL OR return_date >= borrowing_date`     [name: 'chk_return_after_borrow']
   }
 }
 
 Table borrowing_items {
-  borrowing_id int [ref: > borrowings.id]
-  book_copy_id int [ref: > book_copies.id]
+  id             int [pk, increment]
+  borrowing_id   int [not null, ref: > borrowings.id]
+  book_copy_id   int [not null, ref: > book_copies.id]
 
   indexes {
-    (borrowing_id, book_copy_id) [pk]
+    (borrowing_id, book_copy_id) [unique, name: 'uq_borrowing_copy']
   }
-  
 }
 
 Table reservation_statuses {

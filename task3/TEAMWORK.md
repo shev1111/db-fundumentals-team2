@@ -8,7 +8,7 @@
 | Учасник | Роль у команді | Що зроблено | Артефакти / файли |
 |---|---|---|---|
 | Gerlib Andrii | Design and Review| Командна розробка логічної схеми бд в drowio та рев’ю фінальної схеми бд | dbml |
-| Krysa Oleksandr | Design and Review|Design and Review| Командна розробка логічної схеми бд в drowio та рев’ю фінальної схеми бд | dbml |
+| Krysa Oleksandr | Design and Review| Командна розробка логічної схеми бд в drowio та рев’ю фінальної схеми бд | dbml |
 | Shmyhol Evhenii | PM | Органаізація робочого середовища та створення базового шаблону dbml схеми бд  | dbml |
 |Yevhenii Shvaidetskyi|  Team Lead | Розробка первинної версії фізичної схеми бази даних та та рев’ю фінальної схеми бд  | dbml |
 |Viktor Bozhko|Design and Review| Органаізація робочого середовища та створення базового шаблону dbml схеми бд  | dbml |

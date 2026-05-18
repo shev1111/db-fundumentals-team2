@@ -9,7 +9,7 @@ CREATE TABLE "books" (
 CREATE TABLE "book_genre" (
   "book_id" int NOT NULL,
   "genre_id" int NOT NULL,
-  PRIMARY KEY ("book_id", "ganre_id")
+  PRIMARY KEY ("book_id", "genre_id")
 );
 
 CREATE TABLE "genre" (

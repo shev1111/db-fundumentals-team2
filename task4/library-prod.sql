@@ -125,3 +125,13 @@ ALTER TABLE "borrowing items" ADD FOREIGN KEY ("borrowing_id") REFERENCES "borro
 ALTER TABLE "borrowing_items" ADD FOREIGN KEY ("book_copy_id") REFERENCES "book_copies" ("id") DEFERRABLE INITIALLY IMMEDIATE;
 CREATE INDEX "idx_reservation_items_book_id"  ON "reservation_items" ("book_id");
 CREATE INDEX "idx_reservation_items_copy_id"  ON "reservation_items" ("book_copy_id");
+ALTER TABLE "reservations" ADD FOREIGN KEY ("member_id") REFERENCES "members" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE "reservations" ADD FOREIGN KEY ("status_id") REFERENCES "reservation_statuses" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE "reservation_items" ADD FOREIGN KEY ("reservation_id") REFERENCES "reservations" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE "reservation_items" ADD FOREIGN KEY ("book_id") REFERENCES "books" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE "reservation_items" ADD FOREIGN KEY ("book_copy_id") REFERENCES "book_copies" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE "book_reviews" ADD FOREIGN KEY ("member_id") REFERENCES "members" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE "book_reviews" ADD FOREIGN KEY ("book_id") REFERENCES "books" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+INSERT INTO "reservation_statuses" ("name") VALUES ('pending'), ('fulfilled'), ('cancelled');
+CREATE INDEX "idx_res_items_res_book" ON "reservation_items" ("reservation_id", "book_id");
+CREATE UNIQUE INDEX "uq_one_review_per_book" ON "book_reviews" ("member_id", "book_id");

@@ -135,3 +135,11 @@ ALTER TABLE "book_reviews" ADD FOREIGN KEY ("book_id") REFERENCES "books" ("id")
 INSERT INTO "reservation_statuses" ("name") VALUES ('pending'), ('fulfilled'), ('cancelled');
 CREATE INDEX "idx_res_items_res_book" ON "reservation_items" ("reservation_id", "book_id");
 CREATE UNIQUE INDEX "uq_one_review_per_book" ON "book_reviews" ("member_id", "book_id");
+ALTER TABLE "book_copies" ADD FOREIGN KEY ("book_id") REFERENCES "books" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE "book_copies" ADD FOREIGN KEY ("copy_status_id") REFERENCES "copy_statuses" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+INSERT INTO "copy_statuses" ("name") VALUES ('available'), ('borrowed'), ('reserved'), ('lost');
+CREATE INDEX "idx_book_genre_genre_id"        ON "book_genre" ("genre_id");
+CREATE INDEX "idx_book_authors_author_id"     ON "book_authors" ("author_id");
+CREATE INDEX "idx_book_categories_cat_id"     ON "book_categories" ("category_id");
+CREATE INDEX "idx_book_copies_book_id"        ON "book_copies" ("book_id");
+CREATE INDEX "idx_book_reviews_book_id"       ON "book_reviews" ("book_id");

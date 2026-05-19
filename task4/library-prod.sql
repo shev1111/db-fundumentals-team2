@@ -143,3 +143,10 @@ CREATE INDEX "idx_book_authors_author_id"     ON "book_authors" ("author_id");
 CREATE INDEX "idx_book_categories_cat_id"     ON "book_categories" ("category_id");
 CREATE INDEX "idx_book_copies_book_id"        ON "book_copies" ("book_id");
 CREATE INDEX "idx_book_reviews_book_id"       ON "book_reviews" ("book_id");
+ALTER TABLE "book_authors" ADD FOREIGN KEY ("book_id") REFERENCES "books" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE "book_authors" ADD FOREIGN KEY ("author_id") REFERENCES "authors" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE "book_categories" ADD FOREIGN KEY ("book_id") REFERENCES "books" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE "book_categories" ADD FOREIGN KEY ("category_id") REFERENCES "categories" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+CREATE INDEX "idx_book_copies_status_id"      ON "book_copies" ("copy_status_id");
+CREATE INDEX "idx_borrowings_member_id"       ON "borrowings" ("member_id");
+CREATE INDEX "idx_borrowings_status_id"       ON "borrowings" ("status_id"); 

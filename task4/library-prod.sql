@@ -122,6 +122,7 @@ CREATE UNIQUE INDEX "uq_borrowing_copy" ON "borrowing_items" ("borrowing_id", "b
 ALTER TABLE "borrowings" ADD FOREIGN KEY ("member_id") REFERENCES "members" ("id") DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE "borrowings" ADD FOREIGN KEY ("status_id") REFERENCES "borrowing_statuses" ("id") DEFERRABLE INITIALLY IMMEDIATE;
 INSERT INTO "borrowing_statuses" ("name") VALUES ('active'), ('returned'), ('overdue');
+ALTER TABLE "borrowing_items" ADD FOREIGN KEY ("borrowing_id") REFERENCES "borrowings" ("id") DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE "borrowing_items" ADD FOREIGN KEY ("book_copy_id") REFERENCES "book_copies" ("id") DEFERRABLE INITIALLY IMMEDIATE;
 CREATE INDEX "idx_reservation_items_book_id"  ON "reservation_items" ("book_id");
 CREATE INDEX "idx_reservation_items_copy_id"  ON "reservation_items" ("book_copy_id");

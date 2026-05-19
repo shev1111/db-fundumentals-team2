@@ -112,11 +112,11 @@ CREATE TABLE "book_reviews" (
   "rate" smallint NOT NULL,
   CONSTRAINT "chk_rate" CHECK (rate BETWEEN 1 AND 5)
 );
-
+######Yevhenii Shvaidetskyi
 CREATE UNIQUE INDEX "uq_borrowing_copy" ON "borrowing_items" ("borrowing_id", "book_copy_id");
-
+###########Viktor Bozhko
 CREATE INDEX "idx_res_items_res_book" ON "reservation_items" ("reservation_id", "book_id");
-
+###########Viktor Bozhko
 CREATE UNIQUE INDEX "uq_one_review_per_book" ON "book_reviews" ("member_id", "book_id");
 ####Gerlib Andrii
 ALTER TABLE "book_genre" ADD FOREIGN KEY ("book_id") REFERENCES "books" ("id") DEFERRABLE INITIALLY IMMEDIATE;

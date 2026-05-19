@@ -118,43 +118,43 @@ CREATE UNIQUE INDEX "uq_borrowing_copy" ON "borrowing_items" ("borrowing_id", "b
 CREATE INDEX "idx_res_items_res_book" ON "reservation_items" ("reservation_id", "book_id");
 
 CREATE UNIQUE INDEX "uq_one_review_per_book" ON "book_reviews" ("member_id", "book_id");
-
+####Gerlib Andrii
 ALTER TABLE "book_genre" ADD FOREIGN KEY ("book_id") REFERENCES "books" ("id") DEFERRABLE INITIALLY IMMEDIATE;
-
+######Gerlib Andrii
 ALTER TABLE "book_genre" ADD FOREIGN KEY ("genre_id") REFERENCES "genre" ("id") DEFERRABLE INITIALLY IMMEDIATE;
-
+#####Krysa Oleksandr
 ALTER TABLE "book_authors" ADD FOREIGN KEY ("book_id") REFERENCES "books" ("id") DEFERRABLE INITIALLY IMMEDIATE;
-
+#####Krysa Oleksandr
 ALTER TABLE "book_authors" ADD FOREIGN KEY ("author_id") REFERENCES "authors" ("id") DEFERRABLE INITIALLY IMMEDIATE;
-
+#####Krysa Oleksandr
 ALTER TABLE "book_categories" ADD FOREIGN KEY ("book_id") REFERENCES "books" ("id") DEFERRABLE INITIALLY IMMEDIATE;
-
+#####Krysa Oleksandr
 ALTER TABLE "book_categories" ADD FOREIGN KEY ("category_id") REFERENCES "categories" ("id") DEFERRABLE INITIALLY IMMEDIATE;
-
+#####Shmyhol Evhenii
 ALTER TABLE "book_copies" ADD FOREIGN KEY ("book_id") REFERENCES "books" ("id") DEFERRABLE INITIALLY IMMEDIATE;
-
+#####Shmyhol Evhenii
 ALTER TABLE "book_copies" ADD FOREIGN KEY ("copy_status_id") REFERENCES "copy_statuses" ("id") DEFERRABLE INITIALLY IMMEDIATE;
-
+######Yevhenii Shvaidetskyi
 ALTER TABLE "borrowings" ADD FOREIGN KEY ("member_id") REFERENCES "members" ("id") DEFERRABLE INITIALLY IMMEDIATE;
-
+######Yevhenii Shvaidetskyi
 ALTER TABLE "borrowings" ADD FOREIGN KEY ("status_id") REFERENCES "borrowing_statuses" ("id") DEFERRABLE INITIALLY IMMEDIATE;
-
+######Yevhenii Shvaidetskyi
 ALTER TABLE "borrowing_items" ADD FOREIGN KEY ("borrowing_id") REFERENCES "borrowings" ("id") DEFERRABLE INITIALLY IMMEDIATE;
-
+######Yevhenii Shvaidetskyi
 ALTER TABLE "borrowing_items" ADD FOREIGN KEY ("book_copy_id") REFERENCES "book_copies" ("id") DEFERRABLE INITIALLY IMMEDIATE;
-
+###########Viktor Bozhko
 ALTER TABLE "reservations" ADD FOREIGN KEY ("member_id") REFERENCES "members" ("id") DEFERRABLE INITIALLY IMMEDIATE;
-
+###########Viktor Bozhko
 ALTER TABLE "reservations" ADD FOREIGN KEY ("status_id") REFERENCES "reservation_statuses" ("id") DEFERRABLE INITIALLY IMMEDIATE;
-
+###########Viktor Bozhko
 ALTER TABLE "reservation_items" ADD FOREIGN KEY ("reservation_id") REFERENCES "reservations" ("id") DEFERRABLE INITIALLY IMMEDIATE;
-
+###########Viktor Bozhko
 ALTER TABLE "reservation_items" ADD FOREIGN KEY ("book_id") REFERENCES "books" ("id") DEFERRABLE INITIALLY IMMEDIATE;
-
+###########Viktor Bozhko
 ALTER TABLE "reservation_items" ADD FOREIGN KEY ("book_copy_id") REFERENCES "book_copies" ("id") DEFERRABLE INITIALLY IMMEDIATE;
-
+###########Viktor Bozhko
 ALTER TABLE "book_reviews" ADD FOREIGN KEY ("member_id") REFERENCES "members" ("id") DEFERRABLE INITIALLY IMMEDIATE;
-
+###########Viktor Bozhko
 ALTER TABLE "book_reviews" ADD FOREIGN KEY ("book_id") REFERENCES "books" ("id") DEFERRABLE INITIALLY IMMEDIATE;
 
 INSERT INTO "copy_statuses" ("name") VALUES ('available'), ('borrowed'), ('reserved'), ('lost');

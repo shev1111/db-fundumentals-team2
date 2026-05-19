@@ -118,3 +118,10 @@ ALTER TABLE "book_genre" ADD FOREIGN KEY ("genre_id") REFERENCES "genre" ("id") 
 CREATE INDEX "idx_borrowing_items_copy_id"    ON "borrowing_items" ("book_copy_id");
 CREATE INDEX "idx_reservations_member_id"     ON "reservations" ("member_id");
 CREATE INDEX "idx_reservations_status_id"     ON "reservations" ("status_id");
+CREATE UNIQUE INDEX "uq_borrowing_copy" ON "borrowing_items" ("borrowing_id", "book_copy_id");
+ALTER TABLE "borrowings" ADD FOREIGN KEY ("member_id") REFERENCES "members" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE "borrowings" ADD FOREIGN KEY ("status_id") REFERENCES "borrowing_statuses" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE "borrowing items" ADD FOREIGN KEY ("borrowing_id") REFERENCES "borrowings" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE "borrowing_items" ADD FOREIGN KEY ("book_copy_id") REFERENCES "book_copies" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+CREATE INDEX "idx_reservation_items_book_id"  ON "reservation_items" ("book_id");
+CREATE INDEX "idx_reservation_items_copy_id"  ON "reservation_items" ("book_copy_id");

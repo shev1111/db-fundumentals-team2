@@ -162,17 +162,29 @@ INSERT INTO "copy_statuses" ("name") VALUES ('available'), ('borrowed'), ('reser
 INSERT INTO "borrowing_statuses" ("name") VALUES ('active'), ('returned'), ('overdue');
 ###########Viktor Bozhko
 INSERT INTO "reservation_statuses" ("name") VALUES ('pending'), ('fulfilled'), ('cancelled');
-
+#####Shmyhol Evhenii
 CREATE INDEX "idx_book_genre_genre_id"        ON "book_genre" ("genre_id");
+#####Shmyhol Evhenii
 CREATE INDEX "idx_book_authors_author_id"     ON "book_authors" ("author_id");
+#####Shmyhol Evhenii
 CREATE INDEX "idx_book_categories_cat_id"     ON "book_categories" ("category_id");
+#####Shmyhol Evhenii
 CREATE INDEX "idx_book_copies_book_id"        ON "book_copies" ("book_id");
+#####Krysa Oleksandr
 CREATE INDEX "idx_book_copies_status_id"      ON "book_copies" ("copy_status_id");
+#####Krysa Oleksandr
 CREATE INDEX "idx_borrowings_member_id"       ON "borrowings" ("member_id");
+#####Krysa Oleksandr
 CREATE INDEX "idx_borrowings_status_id"       ON "borrowings" ("status_id");
+###Gerlib Andrii
 CREATE INDEX "idx_borrowing_items_copy_id"    ON "borrowing_items" ("book_copy_id");
+###Gerlib Andrii
 CREATE INDEX "idx_reservations_member_id"     ON "reservations" ("member_id");
+###Gerlib Andrii
 CREATE INDEX "idx_reservations_status_id"     ON "reservations" ("status_id");
+######Yevhenii Shvaidetskyi
 CREATE INDEX "idx_reservation_items_book_id"  ON "reservation_items" ("book_id");
+######Yevhenii Shvaidetskyi
 CREATE INDEX "idx_reservation_items_copy_id"  ON "reservation_items" ("book_copy_id");
+#####Shmyhol Evhenii
 CREATE INDEX "idx_book_reviews_book_id"       ON "book_reviews" ("book_id");

@@ -112,3 +112,9 @@ CREATE TABLE "book_reviews" (
   "rate" smallint NOT NULL,
   CONSTRAINT "chk_rate" CHECK (rate BETWEEN 1 AND 5)
 );
+
+ALTER TABLE "book_genre" ADD FOREIGN KEY ("book_id") REFERENCES "books" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE "book_genre" ADD FOREIGN KEY ("genre_id") REFERENCES "genre" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+CREATE INDEX "idx_borrowing_items_copy_id"    ON "borrowing_items" ("book_copy_id");
+CREATE INDEX "idx_reservations_member_id"     ON "reservations" ("member_id");
+CREATE INDEX "idx_reservations_status_id"     ON "reservations" ("status_id");

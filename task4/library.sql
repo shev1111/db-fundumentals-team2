@@ -156,9 +156,11 @@ ALTER TABLE "reservation_items" ADD FOREIGN KEY ("book_copy_id") REFERENCES "boo
 ALTER TABLE "book_reviews" ADD FOREIGN KEY ("member_id") REFERENCES "members" ("id") DEFERRABLE INITIALLY IMMEDIATE;
 ###########Viktor Bozhko
 ALTER TABLE "book_reviews" ADD FOREIGN KEY ("book_id") REFERENCES "books" ("id") DEFERRABLE INITIALLY IMMEDIATE;
-
+#####Shmyhol Evhenii
 INSERT INTO "copy_statuses" ("name") VALUES ('available'), ('borrowed'), ('reserved'), ('lost');
+######Yevhenii Shvaidetskyi
 INSERT INTO "borrowing_statuses" ("name") VALUES ('active'), ('returned'), ('overdue');
+###########Viktor Bozhko
 INSERT INTO "reservation_statuses" ("name") VALUES ('pending'), ('fulfilled'), ('cancelled');
 
 CREATE INDEX "idx_book_genre_genre_id"        ON "book_genre" ("genre_id");

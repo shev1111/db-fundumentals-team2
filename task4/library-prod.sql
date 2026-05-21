@@ -158,3 +158,6 @@ ALTER TABLE "book_categories" ADD FOREIGN KEY ("category_id") REFERENCES "catego
 CREATE INDEX "idx_book_copies_status_id"      ON "book_copies" ("copy_status_id");
 CREATE INDEX "idx_borrowings_member_id"       ON "borrowings" ("member_id");
 CREATE INDEX "idx_borrowings_status_id"       ON "borrowings" ("status_id");
+CREATE INDEX "idx_book_copies_status_id"      ON "book_copies" ("copy_status_id");
+CREATE INDEX "idx_borrowings_member_id"       ON "borrowings" ("member_id");
+CREATE INDEX "idx_borrowings_status_id"       ON "borrowings" ("status_id");
